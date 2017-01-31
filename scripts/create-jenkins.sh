@@ -17,7 +17,7 @@ port=$3
 publish_port=$4
 
 curr_dir=`pwd`
-home_dir=`dirname $currdir`
+home_dir=`dirname $curr_dir`
 
 # make persitance dirs
 jenkins_data=$home_dir/jenkins_data/$container_name
