@@ -32,5 +32,5 @@ mkdir -p $jenkins_data
 # build jenkins
 docker rm -f $container_name
 #cd docker && docker create --restart=unless-stopped --name jenkins-primary -p $port:8080 -p $publish_port:50000 -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):$(which docker) -v $jenkins_data:/var/jenkins_home --prefix=/jenkins jenkins:alpine
-cd docker && docker create --restart=unless-stopped --name $container_name -p $port:8080 -p $publish_port:50000 -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):$(which docker) -v $jenkins_data:/var/jenkins_home --env JENKINS_OPTS="--prefix=/jenkins -Djenkins.install.runSetupWizard=false" $jenkins_image
+cd docker && docker create --restart=unless-stopped --name $container_name -p $port:8080 -p $publish_port:50000 -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):$(which docker) -v $jenkins_data:/var/jenkins_home --env JENKINS_OPTS="--prefix=/jenkins -Djenkins.install.runSetupWizard=false" --env JAVA_OPTS="-Dinstall.dir=$jenkins_data" $jenkins_image
 
