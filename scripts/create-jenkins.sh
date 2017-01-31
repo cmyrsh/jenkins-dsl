@@ -18,7 +18,7 @@ publish_port=$4
 
 
 # make persitance dirs
-jenkins_data=`pwd`/data/jenkins
+jenkins_data=`pwd`/jenkins_data/$container_name
 
 if [ -d "$jenkins_data" ]; then
   # Clean
