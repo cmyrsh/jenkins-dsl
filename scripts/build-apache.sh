@@ -11,8 +11,11 @@ fi
 # this scripts builds simple apache httpd image and mounts our html directory
 apache_port=$1
 # get directory path
+curr_dir=`pwd`
+home_dir=`dirname $curr_dir`
+
 cd ..
-html_path=`pwd`/html
+html_path=$home_dir/html
 
 # create container
 docker rm -f dsl-apache
