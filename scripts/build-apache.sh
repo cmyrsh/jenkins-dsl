@@ -13,9 +13,7 @@ apache_port=$1
 # get directory path
 curr_dir=`pwd`
 home_dir=`dirname $curr_dir`
-
-cd ..
-html_path=$home_dir/html
+html_path=\${WORKSPACE}/html
 
 # create container
 docker rm -f dsl-apache
