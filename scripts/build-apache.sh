@@ -1,9 +1,9 @@
 #!/bin/sh
 
-if [ $# -ne 1 ]
+if [ $# -ne 2 ]
   then
-    echo "This script expects 1 argument 'apache_port'"
-    echo "apache_port: port on which apache listens"
+    echo "This script expects 2 arguments 'apache_port html_path'"
+    echo "apache_port: port on which apache listens\n html_path: path where application files are kept"
     exit 1
 
 fi
@@ -13,7 +13,7 @@ apache_port=$1
 # get directory path
 curr_dir=`pwd`
 home_dir=`dirname $curr_dir`
-html_path=\${WORKSPACE}/html
+html_path=$2
 
 # create container
 docker rm -f dsl-apache
