@@ -17,5 +17,5 @@ html_path=$2
 
 # create container
 docker rm -f dsl-apache
-docker create --name dsl-apache -v $html_path:/var/www/html:ro -p $apache_port:80 httpd:alpine
+docker create --name dsl-apache -v $html_path:/usr/local/apache2/htdocs:ro -p $apache_port:80 httpd:alpine
 docker start dsl-apache
