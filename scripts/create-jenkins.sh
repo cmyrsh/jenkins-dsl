@@ -2,10 +2,10 @@
 
 # handle inputs. 2 inputs, port and publishport
 
-if [ $# -ne 4 ]
+if [ $# -ne 5 ]
   then
-    echo "This script expects 4 arguments 'jenkins_image_name container_name port publishport'"
-    echo "jenkins_image_name: name of jenkins image\ncontainer_name: name of container\nport: port on which jenkins will run, \npublishport: port on which jenkins will listen to slaves"
+    echo "This script expects 5 arguments 'jenkins_image_name container_name port publishport data_dir'"
+    echo "jenkins_image_name: name of jenkins image\ncontainer_name: name of container\nport: port on which jenkins will run, \npublishport: port on which jenkins will listen to slaves\n data_dir: path on host file system where data is persisted"
     exit 1
 
 fi
@@ -20,7 +20,10 @@ curr_dir=`pwd`
 home_dir=`dirname $curr_dir`
 
 # make persitance dirs
-jenkins_data=$home_dir/jenkins_data/$container_name
+#jenkins_data=$home_dir/jenkins_data/$container_name
+jenkins_data=$5/$container_name
+
+echo "persistant data dir : $jenkins_data"
 
 if [ -d "$jenkins_data" ]; then
   # Clean
