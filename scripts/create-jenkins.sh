@@ -21,7 +21,8 @@ home_dir=`dirname $curr_dir`
 
 # make persitance dirs
 #jenkins_data=$home_dir/jenkins_data/$container_name
-jenkins_data=$5/$container_name
+install_base=$5
+jenkins_data=$install_base/$container_name
 
 echo "persistant data dir : $jenkins_data"
 
@@ -35,5 +36,5 @@ mkdir -p $jenkins_data
 # build jenkins
 docker rm -f $container_name
 #cd docker && docker create --restart=unless-stopped --name jenkins-primary -p $port:8080 -p $publish_port:50000 -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):$(which docker) -v $jenkins_data:/var/jenkins_home --prefix=/jenkins jenkins:alpine
-cd docker && docker create --restart=unless-stopped --name $container_name -p $port:8080 -p $publish_port:50000 -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):$(which docker) -v $jenkins_data:/var/jenkins_home --env JENKINS_OPTS="--prefix=/jenkins -Djenkins.install.runSetupWizard=false" --env JAVA_OPTS="-Dinstall.dir=$jenkins_data" $jenkins_image
+docker create --restart=unless-stopped --name $container_name -p $port:8080 -p $publish_port:50000 -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):$(which docker) -v $jenkins_data:/var/jenkins_home --env JENKINS_OPTS="--prefix=/jenkins -Djenkins.install.runSetupWizard=false" --env JAVA_OPTS="-Dinstall.dir=$jenkins_data -Dinstall.base.dir=$install_base" $jenkins_image
 

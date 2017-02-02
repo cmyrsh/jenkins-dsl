@@ -26,7 +26,7 @@ rm -vrf docker
 #clone jenkins repo -- alpine branch
 git clone  https://github.com/jenkinsci/docker.git
 
-# copy basic security file from current dir to cloned jenkins
+# copy basic securns printity file from current dir to cloned jenkins
 cp basic-security.groovy docker/
 
 
@@ -43,7 +43,7 @@ echo "USER $_user" >> docker/Dockerfile
 #echo "RUN echo 2.0 > \$JENKINS_HOME/jenkins.install.UpgradeWizard.state" >> docker/Dockerfile
 echo "COPY basic-security.groovy /usr/share/jenkins/ref/init.groovy.d/basic-security.groovy" >> docker/Dockerfile
 # install plugins
-echo "RUN /usr/local/bin/install-plugins.sh ace-editor ant antisamy-markup-formatter bouncycastle-api branch-api build-timeout cloudbees-folder credentials credentials-binding display-url-api durable-task email-ext external-monitor-job git git-client git-server github github-api github-branch-source github-organization-folder gradle handlebars icon-shim job-dsl jquery-detached junit ldap mailer mapdb-api matrix-auth matrix-project momentjs pam-auth pipeline-build-step pipeline-graph-analysis pipeline-input-step pipeline-milestone-step pipeline-rest-api pipeline-stage-step pipeline-stage-view plain-credentials resource-disposer scm-api script-security ssh-credentials ssh-slaves structs subversion timestamper token-macro windows-slaves workflow-aggregator workflow-api workflow-basic-steps workflow-cps workflow-cps-global-lib workflow-durable-task-step workflow-job workflow-multibranch workflow-scm-step workflow-step-api workflow-support ws-cleanup" >> docker/Dockerfile
+echo "RUN /usr/local/bin/install-plugins.sh ace-editor ant antisamy-markup-formatter bouncycastle-api branch-api build-timeout cloudbees-folder credentials credentials-binding display-url-api durable-task email-ext external-monitor-job git git-client git-server github github-api github-branch-source github-organization-folder gradle handlebars icon-shim job-dsl jquery-detached junit ldap mailer mapdb-api matrix-auth matrix-project momentjs pam-auth pipeline-build-step pipeline-graph-analysis pipeline-input-step pipeline-milestone-step pipeline-rest-api pipeline-stage-step pipeline-stage-view plain-credentials resource-disposer scm-api script-security ssh-credentials ssh-slaves structs subversion timestamper token-macro windows-slaves workflow-aggregator workflow-api workflow-basic-steps workflow-cps workflow-cps-global-lib workflow-durable-task-step workflow-job workflow-multibranch workflow-scm-step workflow-step-api workflow-support ws-cleanup groovy" >> docker/Dockerfile
 
 # build jenkins
 cd docker && docker build --build-arg user=$_user --build-arg group=$_grp --build-arg uid=$_uid --build-arg gid=$_gid -t $_image_name .
